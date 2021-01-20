@@ -1,0 +1,92 @@
+@charset "UTF-8";
+/*
+Feuille de style CSS relative à la maquette "Orinoco Cameras"
+Par Tony BARTHELEMY
+*/
+
+/* COMMON CSS : */
+
+@font-face {
+    font-family: "Montserrat", sans-serif;
+    src: url('href="https://fonts.googleapis.com/css?family=Montserrat');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Montserrat", sans-serif;
+    src: url('href="https://fonts.googleapis.com/css?family=Montserrat');
+    font-weight: 600;
+    font-style: normal;
+}
+body {
+    font-family: "Montserrat", sans-serif;
+    color: #434343;
+    margin: 0;
+    padding: 0;
+  }
+
+
+/* GENERAL LAYOUT : */
+
+header {
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5em;
+    background-color: white;
+    box-shadow: 0 3px 10px 0px rgba(0, 0, 0, 0.3);
+    color: #d58137;
+    padding: 0 2em 0 2em;
+    position: sticky;
+    top: 0px;
+}
+
+.featured-product {
+    z-index: 2;
+    height: 30em;
+    background-color: #f2f2f2;
+}
+
+.products-list {
+    height: 30em;
+}
+
+.about {
+    background: #f2f2f2;
+    height: 20em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8em;
+    width: 100%;
+    background-color: rgb(43, 43, 43);
+    color: white;
+    font-size: 14px;
+}
+
+
+/* COMPONENTS : */
+
+.btn {
+    background: linear-gradient(150deg, #d58137, #8f5bfe);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    width: 10em;
+    padding: 1em;
+    border-radius: 35px;
+    margin: 15px auto;
+}
+
+.fas {
+    font-size: 25px;
+    cursor: pointer;
+}
