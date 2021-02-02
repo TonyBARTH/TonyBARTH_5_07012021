@@ -31,7 +31,15 @@ h1 {
     font-size: 30px;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
 /* GENERAL LAYOUT : */
+
 
 header {
     z-index: 999;
@@ -46,6 +54,18 @@ header {
     position: sticky;
     top: 0px;
 }
+
+.page-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 8em;
+    background: #f2f2f2;
+}
+
 
 #banner {
     display: flex;
@@ -77,24 +97,35 @@ header {
     justify-content: center;
     position: relative;
     max-width: 15em;
-    height: 15em;
+    height: 20em;
     background: black;
     margin: 0.5em;
     overflow: hidden;
 }
 .products-list__item--name {
     position: absolute;
-    left: 15px;
-    bottom: 5px;
+    left: 20px;
+    top: 0;
     font-weight: bold;
     color: white;
+    text-shadow: 2px 2px 5px #0000009c;
 }
+
 .products-list__image {
-    opacity: 0.8;
+    opacity: 1;
     height: 100%;
     width: auto;
     object-fit: cover;
 }
+.products-list__image:hover {
+    opacity: 0.8;
+}
+
+
+
+
+/* PRODUCT PAGE: */
+
 
 .product {
     display: flex;
@@ -142,7 +173,55 @@ footer {
 }
 
 
+
+
+/* PAGE CART: */
+
+
+#cart-resume {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 3em;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 1em;
+    border-radius: 2em;
+    box-shadow: 3px 3px 20px #00000047
+}
+
+.cart-product__img {
+    min-width: 10em;
+    height: 10em;
+    background-color: #f2f2f2;
+    margin: 1em;
+    border-radius: 1em;
+}
+.cart-product__details {
+    min-width: 15em;
+    text-align: left;
+    margin: 2em;
+}
+.product__details--options {
+    margin: 20px 0;
+    padding: 20px 0;
+    border-top: solid 1px #d58137;
+}
+.cart-product__details--price {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0.8em;
+}
+
+
+
 /* COMPONENTS : */
+
 
 .btn {
     background: linear-gradient(150deg, #d58137, #8f5bfe);
@@ -152,8 +231,21 @@ footer {
     width: 10em;
     padding: 1em;
     border-radius: 35px;
-    margin: 15px 0;
+    margin: 0.8em;
     cursor: pointer;
+}
+.btn:hover {
+    background: linear-gradient(150deg, #8f5bfe, #d58137);
+}
+.details {
+    position: absolute;
+    width: auto;
+    bottom: 4em;
+}
+.add-cart {
+    position: absolute;
+    width: auto;
+    bottom: 0;
 }
 
 .fas {
