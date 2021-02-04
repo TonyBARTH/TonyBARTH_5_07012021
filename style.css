@@ -278,6 +278,9 @@ footer {
     width: auto;
     bottom: 0;
 }
+.add-cart2 {
+    margin-left: -4px;
+}
 .back-to-home {
     margin: 3em auto;
     width: 12em;
