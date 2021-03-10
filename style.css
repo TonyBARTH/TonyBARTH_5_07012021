@@ -4,7 +4,8 @@ Feuille de style CSS relative à la maquette "Orinoco Cameras"
 Par Tony BARTHELEMY
 */
 
-/* COMMON CSS : */
+/* COMMON CSS : 
+****************************************************************/
 
 @font-face {
     font-family: "Montserrat", sans-serif;
@@ -38,7 +39,8 @@ a {
 
 
 
-/* GENERAL LAYOUT : */
+/* GENERAL LAYOUT :
+****************************************************************/
 
 
 header {
@@ -103,7 +105,8 @@ footer {
 
 
 
-/* HOMEPAGE : */
+/* HOMEPAGE : 
+****************************************************************/
 
 
 .products-list {
@@ -150,8 +153,8 @@ footer {
 
 
 
-/* PRODUCT PAGE: */
-
+/* PRODUCT PAGE: 
+****************************************************************/
 
 .product {
     display: flex;
@@ -190,8 +193,13 @@ footer {
 
 
 
-/* PAGE CART: */
+/* PAGE CART: 
+****************************************************************/
 
+#display-empty-cart {
+    text-align: center;
+    margin: 5em 0 5em 0;
+}
 
 #cart-resume {
     display: flex;
@@ -205,6 +213,7 @@ footer {
 
 .cart-item {
     display: flex;
+    width: 100%;
     justify-content: space-evenly;
     align-items: center;
     margin: 1em;
@@ -213,19 +222,18 @@ footer {
 }
 
 .cart-product__img {
-    min-width: 10em;
+    min-width: 14em;
     height: 10em;
     background-color: #f2f2f2;
     margin: 1em;
     border-radius: 1em;
-    object-fit: cover;
     overflow: hidden;
 }
-.cart-product__details {
-    min-width: 15em;
-    text-align: left;
-    margin: 2em;
+.cart-product__img > img {
+    height: 100%;
+    width: auto;
 }
+
 .product__details--options {
     margin: 20px 0;
     padding: 20px 0;
@@ -237,8 +245,10 @@ footer {
     margin: 0.8em;
 }
 #cart-total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     width: 75%;
-    text-align: right;
 }
 .cart-total-price {
     width: 100%;
@@ -251,7 +261,8 @@ footer {
 
 
 
-/* COMPONENTS : */
+/* COMPONENTS :
+****************************************************************/
 
 
 .btn {
@@ -281,9 +292,16 @@ footer {
 .add-cart2 {
     margin-left: -4px;
 }
+.delete-cart2 {
+    margin-left: -4px;
+}
 .back-to-home {
     margin: 3em auto;
     width: 12em;
+}
+.cart-validation {
+    margin-top: 0;
+    margin-right: 0;
 }
 
 .fas {

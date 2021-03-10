@@ -24,20 +24,59 @@ fetch(apiUrl + id)
             })
 })
 
-document.getElementById("add-cart").addEventListener('click', function(){
-    var cart = localStorage.getItem('product');
 
-    if (cart == null) {
-        cart = [];
+
+/* FONCTION AJOUT AU PANIER
+***************************************************/
+
+document.getElementById("add-cart").addEventListener('click', function(){
+    var userCart = localStorage.getItem('userCart');
+
+    if (userCart == null) {
+        userCart = []; 
+        console.log("Le panier vient d'être généré dans le localStorage"); 
+        /* Si le panier est vide, il va être généré sous forme de tableau */
     } else {
-        cart = JSON.parse(cart);
+        userCart = JSON.parse(userCart); 
+        /* Sinon, on le récupère en le parsant */
     }
 
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
 
-    if (!cart.includes(id)) {
-        cart.push(id);
-        localStorage.setItem('product', JSON.stringify(cart));
+    if (!userCart.includes(id)) {
+        userCart.push(id);
+        localStorage.setItem('userCart', JSON.stringify(userCart));
+        alert("Votre article a bien été ajouté au panier !");
     }
 });
+
+
+/* FONCTION SUPPRESSION AU PANIER
+***************************************************/
+
+document.getElementById("delete-cart").addEventListener('click', function(){
+    var userCart = localStorage.getItem('userCart');
+
+    if (userCart != null) {
+        userCart = JSON.parse(userCart);
+        /* Si le panier contient déjà un ou plusieurs produits, on le récupère en le parsant */
+    } 
+    else {
+        return;
+    }
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    /* Ciblage et récupération de l'id du produit en question */
+
+    if (userCart.includes(id)) {
+        const index = userCart.indexOf(id);
+        userCart.splice(index, 1);
+        /* On vérifie si le panier contient l'id, et si oui on le supprime */
+        localStorage.setItem('userCart', JSON.stringify(userCart));
+        /* On restructure ensuite le panier pour termnier l'opération */
+        alert("Votre article a été retiré du panier !")
+    }
+});
+

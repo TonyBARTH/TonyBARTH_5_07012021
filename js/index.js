@@ -1,7 +1,7 @@
+
+
 var productList = "";
-
 var productPage = "product.html";
-
 const apiUrl = "http://localhost:3000/api/cameras";
 
 
@@ -22,7 +22,7 @@ fetch(apiUrl)
                         + '<div class="btn details"><a href="product.html?id=' + element._id + '">Voir en détails</a></div>'
                         + '<div class="btn add-cart"><a href="#">Ajouter au panier</a></div>'
                         + '</div>';
-                        /* On créer le contenu qui va s'insérer dans le html de notre page */
+                        /* On créer pour chaque entrée le contenu qui va s'insérer dans le html de notre page */
                     });
                     document.querySelector(".products-list").innerHTML = productList;
                     /* On applique le contenu de productList dans le HTML de la page */
@@ -35,5 +35,30 @@ fetch(apiUrl)
     .catch (function (err){
         alert("Une erreur est survenue : impossible d'afficher les produits.");
     });
+;
 
 
+/* Systeme d'ajout au panier */
+
+document.querySelector(".add-cart").addEventListener('click', function(){
+    var userCart = localStorage.getItem('userCart');
+
+    if (userCart == null) {
+        userCart = [];
+        /* S'il n'y a pas d'item dans le panier, on créé un tableau */
+    } else {
+        userCart = JSON.parse(userCart);
+        /* Sinon, on parse le contenu */ 
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    /* On récupère l'identifiant du produit */
+
+    if (!userCart.includes(id)) {
+        /* Si le produit n'est pas dans le panier... */
+        userCart.push(id);
+        localStorage.setItem('userCart', JSON.stringify(userCart));
+        /* ... on l'inscrit dedans (localStorage) et on le reconvertit en chaine Json */
+    }
+});
