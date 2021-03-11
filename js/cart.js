@@ -2,7 +2,6 @@
 const apiUrl = "http://localhost:3000/api/cameras/";
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
-var html = "";
 
 /* GENERATION DU PANIER D'ACHAT
 **************************************************/
@@ -23,35 +22,37 @@ if (localStorage.getItem("userCart")){
 };
 
 let userCart = JSON.parse(localStorage.getItem("userCart"));
+console.log(userCart);
 /* La variable qui appelle le panier en relevant ce qui se trouve dans le localStorage */
+
+
+
+/* RECUPERATION ET AFFICHAGE DES PRODUITS DANS LE PANIER
+******************************************************************/
 
 const promises = userCart.map(productId => {
     return fetch(apiUrl + productId)
         .then(response => {
             return response.json()
-
-            .then(product => {
-            /* Pour chaque produit du panier on fait appel à l'Api et on récolte également l'Id de chaque produit */
-
-            /* On prépare ce qui doit être implanté dans le html... */
-            html = html 
-            + '<div class="cart-item">'
-            + '<div class="cart-product__img">' + '<img src="' + product.imageUrl + '" alt="Photo du produit"></a>' + '</div>'
-            + '<div class="cart-product__details">'
-            + '<div class="cart-product__details--name">'+ '<h2>' + product.name + '</h2>' + '</div>'
-            + '<div class="cart-product__details--options">' + '</div>'
-            + '</div>'
-            + '<div class="cart-product__details--price">' + product.price + '€' + '</div>';
-            + '<div class="btn">Enlever du panier</div>'
-            + '</div';
-
-            document.getElementById("cart-resume").innerHTML = html;
-            /* ...et on l'insère dans le html de la page Panier. */
-            });
-        });
+    });
 });
 
-promises.all(promises).then(product => {
-console.log(product.name);
+const cartResume = document.getElementById("cart-resume");
+var html = "";
+
+Promise.all(promises).then(products => {
+    products.forEach(product => {
+        html = html
+        + '<div class="cart-item">'
+        + '<div class="cart-product__img">' + '<img src="' + product.imageUrl + '" alt="Photo du produit"></a>' + '</div>'
+        + '<div class="cart-product__details">'
+        + '<div class="cart-product__details--name">'+ '<h2>' + product.name + '</h2>' + '</div>'
+        + '<div class="cart-product__details--options">' + '</div>'
+        + '</div>'
+        + '<div class="cart-product__details--price">' + (product.price / 1000).toFixed(2) + '€' + '</div>'
+        + '<div class="btn">Enlever du panier</div>'
+        + '</div>';
+    });
+cartResume.innerHTML = html;
 });
 
