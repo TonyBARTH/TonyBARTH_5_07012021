@@ -3,27 +3,39 @@ const apiUrl = "http://localhost:3000/api/cameras/";
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 
-/* GENERATION DU PANIER D'ACHAT
-**************************************************/
 
-if (localStorage.getItem("userCart")){
-    console.log("Le panier a été généré dans le localStorage"); 
-    /* Vérification de l'existence du panier et message de confirmation dans Console */
-    document.getElementById("display-empty-cart").remove();
-    /* S'il n'est pas vide on supprime le message et on créé un tableau récapitulatif */
-} else {
-	console.log("Le panier n'existe pas encore, il va être créé dans le localStorage");
-    let cartInit = []; 
-    /* Le panier va être un tableau de produits */
-    localStorage.setItem("userCart", JSON.stringify(cartInit));
-    /* Initialisation du panier de produits */
-    document.getElementById("cart-resume").style.display = 'none';
-    /* Si le panier est vide on affiche uniquement le message PANIER VIDE et on cache le reste */
-};
+
+/* AFFICHAGE DU PANIER D'ACHAT
+**************************************************/
 
 let userCart = JSON.parse(localStorage.getItem("userCart"));
 console.log(userCart);
 /* La variable qui appelle le panier en relevant ce qui se trouve dans le localStorage */
+
+if (userCart == null) {
+    userCart = [];
+    document.getElementById("display-empty-cart").style.display = 'block';
+    document.getElementById("cart-resume").style.display = 'none';
+    document.getElementById("user-form").style.display = 'none';
+    /* Si le panier n'existe pas encore, on l'initialise en tableau et on affiche uniquement le message "Panier vide" */
+} else {
+    localStorage.setItem("userCart", JSON.stringify(userCart));
+    /* Sinon, on le récupère... */
+    document.getElementById("display-empty-cart").style.display = 'none';
+    /* ...et on enlève le message "Panier vide" */
+}
+
+if (userCart.length == 0) {
+  document.getElementById("display-empty-cart").style.display = 'block';
+  document.getElementById("cart-resume").style.display = 'none';
+  document.getElementById("user-form").style.display = 'none';
+  /* Si le panier est vide on affiche uniquement le message "Panier vide" */
+} else {
+  localStorage.setItem("userCart", JSON.stringify(userCart));
+  /* Sinon, on le récupère... */
+  document.getElementById("display-empty-cart").style.display = 'none';
+  /* ...et on enlève le message "Panier vide" */
+}
 
 
 
@@ -47,10 +59,18 @@ Promise.all(promises).then(products => {
         + '<div class="cart-product__img">' + '<img src="' + product.imageUrl + '" alt="Photo du produit"></a>' + '</div>'
         + '<div class="cart-product__details">'
         + '<div class="cart-product__details--name">'+ '<h2>' + product.name + '</h2>' + '</div>'
-        + '<div class="cart-product__details--options">' + '</div>'
+        + '<div class="cart-product__details--options">'
+        + '<form>' + '<label for="options-choice">Optique choisie :</label>'
+        + '<select class="option-choose" name="option-choose">'
+        + '<option>' + product.lenses[0] +'</option>'
+        + '<option>' + product.lenses[1] +'</option>'
+        + '<option>' + product.lenses[2] +'</option>'
+        + '</select>'
+        + '</form>'
+        + '</div>'
         + '</div>'
         + '<div class="cart-product__details--price">' + (product.price / 1000).toFixed(2) + '€' + '</div>'
-        + '<div class="btn">Enlever du panier</div>'
+        + '<div class="btn" id="delete-cart">Enlever du panier</div>'
         + '</div>';
     });
 cartResume.innerHTML = html;

@@ -48,6 +48,8 @@ document.getElementById("add-cart").addEventListener('click', function(){
         userCart.push(id);
         localStorage.setItem('userCart', JSON.stringify(userCart));
         alert("Votre article a bien été ajouté au panier !");
+    } else {
+        alert("Cet article est déjà dans votre panier !");
     }
 });
 

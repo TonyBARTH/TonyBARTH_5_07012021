@@ -31,69 +31,6 @@
 
         <section id="cart-resume">
 
-            <div class="cart-item">
-                <div class="cart-product__img"></div>
-                <div class="cart-product__details">
-                    <div class="cart-product__details--name">
-                        <h2>Nom du modèle</h2>
-                    </div>
-                    <div class="cart-product__details--options">
-                        <form>
-                            <label for="options-choice">Choix de l'optique :</label>
-                            <select class="option-choose" name="option-choose">
-                                <option>Optique 1</option>
-                                <option>Optique 2</option>
-                                <option>Optique 3</option>
-                            </select>
-                        </form>
-                    </div>
-                </div>
-                <div class="cart-product__details--price">85€</div>
-                <div class="btn">Enlever du panier</div>
-            </div>
-
-            <div class="cart-item">
-                <div class="cart-product__img"></div>
-                <div class="cart-product__details">
-                    <div class="cart-product__details--name">
-                        <h2>Nom du modèle</h2>
-                    </div>
-                    <div class="cart-product__details--options">
-                        <form>
-                            <label for="options-choice">Choix de l'optique :</label>
-                            <select class="option-choose" name="option-choose">
-                                <option>Optique 1</option>
-                                <option>Optique 2</option>
-                                <option>Optique 3</option>
-                            </select>
-                        </form>
-                    </div>
-                </div>
-                <div class="cart-product__details--price">85€</div>
-                <div class="btn">Enlever du panier</div>
-            </div>
-
-            <div class="cart-item">
-                <div class="cart-product__img"></div>
-                <div class="cart-product__details">
-                    <div class="cart-product__details--name">
-                        <h2>Nom du modèle</h2>
-                    </div>
-                    <div class="cart-product__details--options">
-                        <form>
-                            <label for="options-choice">Choix de l'optique :</label>
-                            <select class="option-choose" name="option-choose">
-                                <option>Optique 1</option>
-                                <option>Optique 2</option>
-                                <option>Optique 3</option>
-                            </select>
-                        </form>
-                    </div>
-                </div>
-                <div class="cart-product__details--price">85€</div>
-                <div class="btn">Enlever du panier</div>
-            </div>
-
             <div id="cart-total">
                 <h3>Montant total :</h3>
                 <div class="cart-total-price">255€</div>
@@ -101,6 +38,38 @@
             </div>          
 
         </section>
+
+        <section id="user-form">
+            <h2>Passer commande</h2>
+            <p>Veuillez remplir le formulaire ci-dessous pour finaliser votre commande.</p>
+                <form method="post" name="cart-form">
+                    <div class="form-field half">
+                        <label for="firstname" class="label">Votre prénom :</label>
+                        <input type="text" name="firstname" id="firstname" class="input" required />
+                    </div>
+                    <div class="form-field half">
+                        <label for="lastname" class="label">Votre nom :</label>
+                        <input type="text" name="lastname" id="lastname" class="input" required />
+                    </div>
+                    <div class="form-field">
+                        <label for="email" class="label">Votre e-mail :</label>
+                        <input type="text" name="email" id="email" class="input" required />
+                    </div>
+                    <div class="form-field">
+                        <label for="adress" class="label">Votre adresse :</label>
+                        <input type="text" name="adress" id="address" class="input" required />
+                    </div>
+                    <div class="form-field half">
+                        <label for="zipcode" class="label">Code postal :</label>
+                        <input type="text" name="zipcode" id="zipcode" class="input" required />
+                    </div>
+                    <div class="form-field half">
+                        <label for="city" class="label">Ville: </label>
+                        <input type="text" name="city" id="city" class="input" required />
+                    </div>
+                </form>
+        </section>
+
 
 
         <a href="./index.html"><div class="btn back-to-home">Continuer vos achats</div></a>

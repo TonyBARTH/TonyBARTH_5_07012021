@@ -261,6 +261,45 @@ footer {
 
 
 
+/* USER FORM :
+****************************************************************/
+
+#user-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#user-form > h2{
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 40em;
+}
+.form-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.half {
+    width: 50%;
+}
+input {
+    padding: 1.2em;
+    border: 2px solid #cfcfcf;
+    border-radius: 25px;
+    margin: 5px;
+}
+label {
+    margin: 15px 0 0 20px;
+}
+
+
+
 /* COMPONENTS :
 ****************************************************************/
 
