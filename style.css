@@ -222,7 +222,7 @@ footer {
 }
 
 .cart-product__img {
-    min-width: 14em;
+    max-width: 15em;
     height: 10em;
     background-color: #f2f2f2;
     margin: 1em;
@@ -233,12 +233,10 @@ footer {
     height: 100%;
     width: auto;
 }
-
-.product__details--options {
-    margin: 20px 0;
-    padding: 20px 0;
-    border-top: solid 1px #d58137;
+.cart-product__details {
+    max-width: 40%;
 }
+
 .cart-product__details--price {
     font-size: 20px;
     font-weight: 600;
@@ -250,7 +248,7 @@ footer {
     align-items: flex-end;
     width: 75%;
 }
-.cart-total-price {
+#cart-total-price {
     width: 100%;
     border-top: 1px solid black;
     padding: 0.5em 0 1em 0;
@@ -270,9 +268,11 @@ footer {
     justify-content: center;
     align-items: center;
 }
-
 #user-form > h2{
     text-align: center;
+}
+#user-form .label {
+    margin: 15px 0 0 20px;
 }
 
 form {
@@ -294,9 +294,31 @@ input {
     border-radius: 25px;
     margin: 5px;
 }
-label {
-    margin: 15px 0 0 20px;
+#submitBtn {
+    margin: auto;
 }
+
+
+
+/* PAGE VALIDATION :
+****************************************************************/
+
+#confirmation-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#logo-check-validation .fas {
+    padding: 3rem;
+    color: green;
+    font-size: 8em;
+}
+
+
+
 
 
 
@@ -309,8 +331,9 @@ label {
     color: white;
     font-weight: bold;
     text-align: center;
-    width: 10em;
+    min-width: 10em;
     padding: 1em;
+    border: none;
     border-radius: 35px;
     margin: 0.8em;
     cursor: pointer;
@@ -339,8 +362,9 @@ label {
     width: 12em;
 }
 .cart-validation {
-    margin-top: 0;
-    margin-right: 0;
+    font-size: inherit;
+    font-family: inherit;
+    margin: 4em 0.8em 5em 0.8em;
 }
 
 .fas {

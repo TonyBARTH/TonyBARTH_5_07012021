@@ -9,7 +9,6 @@ const id = urlParams.get('id');
 **************************************************/
 
 let userCart = JSON.parse(localStorage.getItem("userCart"));
-console.log(userCart);
 /* La variable qui appelle le panier en relevant ce qui se trouve dans le localStorage */
 
 if (userCart == null) {
@@ -50,10 +49,15 @@ const promises = userCart.map(productId => {
 });
 
 const cartResume = document.getElementById("cart-resume");
+const totalCart = document.getElementById("cart-total-price");
 var html = "";
 
+
 Promise.all(promises).then(products => {
+    let totalPrice = 0;
     products.forEach(product => {
+        totalPrice += (product.price / 100);
+
         html = html
         + '<div class="cart-item">'
         + '<div class="cart-product__img">' + '<img src="' + product.imageUrl + '" alt="Photo du produit"></a>' + '</div>'
@@ -62,17 +66,154 @@ Promise.all(promises).then(products => {
         + '<div class="cart-product__details--options">'
         + '<form>' + '<label for="options-choice">Optique choisie :</label>'
         + '<select class="option-choose" name="option-choose">'
-        + '<option>' + product.lenses[0] +'</option>'
-        + '<option>' + product.lenses[1] +'</option>'
-        + '<option>' + product.lenses[2] +'</option>'
+        + '<option>' + product.lenses +'</option>'
         + '</select>'
         + '</form>'
         + '</div>'
         + '</div>'
-        + '<div class="cart-product__details--price">' + (product.price / 1000).toFixed(2) + '€' + '</div>'
-        + '<div class="btn" id="delete-cart">Enlever du panier</div>'
+        + '<div class="cart-product__details--price">' + (product.price / 100).toFixed(2) + '€' + '</div>'
+        + '<div class="btn delete-cart" data-id="' + product._id + '">Enlever du panier</div>'
         + '</div>';
     });
-cartResume.innerHTML = html;
+    cartResume.innerHTML = html;
+    totalCart.innerText = totalPrice.toFixed(2) + '€' ;
+    /* On inscrit le résultat dans le corps de la page html */
 });
 
+
+
+/* FONCTION SUPPRESSION AU PANIER
+***************************************************/
+
+document.addEventListener('click', e => {
+  if (!e.target.classList.contains("delete-cart")) {
+    return;
+  }
+  /* Compare le data attribute (data-id) du bouton à celui du tableau de produits et suprime l'élément correspondant */
+  for (index in userCart) {
+
+    if (userCart[index] == e.target.dataset.id) {
+      /* Si l'index dans le Panier est identique à l'id de la cible... */
+       userCart.splice(index, 1);
+       /* ...on retire le produit du tableau */
+    }
+  }
+  localStorage.setItem('userCart', JSON.stringify(userCart));
+  window.location.reload();
+  /* On termine en renvoyant le panier et en actualisant la page */
+});
+
+
+
+
+/* FORMULAIRE DE COMMANDE
+******************************************************************/
+
+function checkInput() {
+
+  /* REGEX de contrôle à utiliser sur le formulaire */
+  let checkNumbers = /[0-9]/;
+  let checkMail = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/y;
+  let checkSpecialCharacters = /[§!@#$%^&*(),;.?":{}|<>]/;
+  let checkZipCode = /^(([0-8][0-9])|(9[0-5]))[0-9]{3}$/;
+  let checkMessage = "";
+
+  /* Récupération des inputs */
+  let firstName = document.getElementById("firstname").value;
+  let lastName = document.getElementById("lastname").value;
+  let email = document.getElementById("email").value;
+  let address = document.getElementById("address").value;
+  let zipCode = document.getElementById("zipcode").value;
+  let city = document.getElementById("city").value;
+
+
+
+  /* ------- TEST DES INPUTS DU FORMULAIRE -------- */
+
+
+  /*Test du champ de la Ville : */
+  if (checkNumbers.test(city) == true || checkSpecialCharacters.test(city) == true || city == "") {
+    document.getElementById("city").style.borderColor = "red";
+    checkMessage = "Merci de vérifier le nom de la ville !";
+  };
+  /*Test du champ Zip Code : */
+  if (checkZipCode.test(zipCode) == false || checkSpecialCharacters.test(zipCode) == true || zipCode == "") {
+    document.getElementById("zipcode").style.borderColor = "red";
+    checkMessage = "Merci de renseigner un code postal valide !";
+  };
+  /*Test du champ Adresse : */
+  if (checkSpecialCharacters.test(address) == true || address == "") {
+    document.getElementById("address").style.borderColor = "red";
+    checkMessage = "Merci de renseigner votre adresse de manière correcte !";
+  };
+  /*Test de l'Adresse Email : */
+  if (checkMail.test(email) == false || email == "") {
+    document.getElementById("email").style.borderColor = "red";
+    checkMessage = "Merci de renseigner une adresse email valide !";
+    /* Ici le check doit retourner "true" pour pouvoir valider le champ (cf: Regex email) */
+    /* Pas la peine de rajouter l'exception des caractères spéciaux puisque c'est inclus dans la regex */
+  };
+  /* Test du champ Nom : */
+  if (checkNumbers.test(lastName) == true || checkSpecialCharacters.test(lastName) == true || lastName == "") {
+    document.getElementById("lastname").style.borderColor = "red";
+    checkMessage = "Merci de renseigner votre nom de manière valide !";
+  };
+  /* Test du champ Prénom : */
+  if (firstName == null || checkNumbers.test(firstName) == true || checkSpecialCharacters.test(firstName) == true || firstName == "") {
+    document.getElementById("firstname").style.borderColor = "red";
+    checkMessage = "Merci de renseigner votre prénom de manière valide !";
+  };
+
+  /* Si un des champs n'est pas valide => message d'alerte */
+  if (checkMessage != "") {
+    alert(checkMessage);
+    return false;
+  }
+  return true;
+};
+
+
+
+
+/* ENVOI DES INFOS FORMULAIRE DE COMMANDE
+******************************************************************/
+
+document.getElementById("submitBtn").addEventListener('click',
+
+function confirmOrder(){
+  if (checkInput() == true){
+    console.log(userCart);
+    let order = {
+      userCart,
+      contact: {
+        firstName: document.getElementById("firstname").value,
+        lastName: document.getElementById("lastname").value,
+        email: document.getElementById("email").value,
+        address: document.getElementById("address").value,
+        zipCode: document.getElementById("zipcode").value,
+        city: document.getElementById("city").value,
+      }
+    };
+  let headers = {
+    "Content-Type": "application/json"
+  };
+  fetch("http://localhost:3000/api/cameras/order", {
+    method: 'post',
+    headers: headers,
+    body: JSON.stringify(order),
+  })
+  .then(function (response) {
+    if (response.status == 201){
+      response.json().then(function (data) {
+        console.log("Ca a marché !");
+        console.log(data);
+        localStorage.clear();
+        sessionStorage.setItem("orderNum", JSON.stringify(data));
+        window.open("/confirmation.html?orderID=" + data.orderId);
+      });
+    } else {
+      window.alert("Impossible de valider votre demande ! Une erreur est survenue.");
+    }
+  });
+}
+});

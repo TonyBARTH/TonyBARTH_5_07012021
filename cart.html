@@ -30,19 +30,19 @@
         </section>
 
         <section id="cart-resume">
-
-            <div id="cart-total">
-                <h3>Montant total :</h3>
-                <div class="cart-total-price">255€</div>
-                <div class="btn cart-validation">Valider le panier</div>
-            </div>          
-
         </section>
+
+        <section id="cart-total">
+            <h3>Montant total :</h3>
+            <div id="cart-total-price"></div>
+        </section>          
+
+        
 
         <section id="user-form">
             <h2>Passer commande</h2>
             <p>Veuillez remplir le formulaire ci-dessous pour finaliser votre commande.</p>
-                <form method="post" name="cart-form">
+                <form onsubmit="return confirmOrder()" method="post" name="cart-form">
                     <div class="form-field half">
                         <label for="firstname" class="label">Votre prénom :</label>
                         <input type="text" name="firstname" id="firstname" class="input" required />
@@ -56,8 +56,8 @@
                         <input type="text" name="email" id="email" class="input" required />
                     </div>
                     <div class="form-field">
-                        <label for="adress" class="label">Votre adresse :</label>
-                        <input type="text" name="adress" id="address" class="input" required />
+                        <label for="address" class="label">Votre adresse :</label>
+                        <input type="text" name="address" id="address" class="input" required />
                     </div>
                     <div class="form-field half">
                         <label for="zipcode" class="label">Code postal :</label>
@@ -66,6 +66,9 @@
                     <div class="form-field half">
                         <label for="city" class="label">Ville: </label>
                         <input type="text" name="city" id="city" class="input" required />
+                    </div>
+                    <div id="submitBtn">
+                        <input class="btn cart-validation" type="submit" value="Confirmer ma commande"/>
                     </div>
                 </form>
         </section>

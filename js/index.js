@@ -34,6 +34,7 @@ fetch(apiUrl)
     /* En cas d'erreur le message suivant apparait */
     .catch (function (err){
         alert("Une erreur est survenue : impossible d'afficher les produits.");
+        console.log("La connexion à l'API n'a pas pu aboutir. Vérifiez l'url ou la connexion.");
     });
 ;
 
