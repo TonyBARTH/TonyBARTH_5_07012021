@@ -315,6 +315,7 @@ input {
     padding: 3rem;
     color: green;
     font-size: 8em;
+    cursor: unset;
 }
 
 

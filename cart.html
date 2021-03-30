@@ -42,7 +42,7 @@
         <section id="user-form">
             <h2>Passer commande</h2>
             <p>Veuillez remplir le formulaire ci-dessous pour finaliser votre commande.</p>
-                <form onsubmit="return confirmOrder()" method="post" name="cart-form">
+                <form method="post" name="cart-form">
                     <div class="form-field half">
                         <label for="firstname" class="label">Votre prénom :</label>
                         <input type="text" name="firstname" id="firstname" class="input" required />
@@ -68,7 +68,7 @@
                         <input type="text" name="city" id="city" class="input" required />
                     </div>
                     <div id="submitBtn">
-                        <input class="btn cart-validation" type="submit" value="Confirmer ma commande"/>
+                        <input class="btn cart-validation" type="submit" value="Confirmer ma commande" onclick=confirmOrder()/>
                     </div>
                 </form>
         </section>

@@ -133,34 +133,34 @@ function checkInput() {
 
   /*Test du champ de la Ville : */
   if (checkNumbers.test(city) == true || checkSpecialCharacters.test(city) == true || city == "") {
-    document.getElementById("city").style.borderColor = "red";
+    document.getElementById("city").style.borderColor = "#d58137";
     checkMessage = "Merci de vérifier le nom de la ville !";
   };
   /*Test du champ Zip Code : */
   if (checkZipCode.test(zipCode) == false || checkSpecialCharacters.test(zipCode) == true || zipCode == "") {
-    document.getElementById("zipcode").style.borderColor = "red";
+    document.getElementById("zipcode").style.borderColor = "#d58137";
     checkMessage = "Merci de renseigner un code postal valide !";
   };
   /*Test du champ Adresse : */
   if (checkSpecialCharacters.test(address) == true || address == "") {
-    document.getElementById("address").style.borderColor = "red";
+    document.getElementById("address").style.borderColor = "#d58137";
     checkMessage = "Merci de renseigner votre adresse de manière correcte !";
   };
   /*Test de l'Adresse Email : */
   if (checkMail.test(email) == false || email == "") {
-    document.getElementById("email").style.borderColor = "red";
+    document.getElementById("email").style.borderColor = "#d58137";
     checkMessage = "Merci de renseigner une adresse email valide !";
     /* Ici le check doit retourner "true" pour pouvoir valider le champ (cf: Regex email) */
     /* Pas la peine de rajouter l'exception des caractères spéciaux puisque c'est inclus dans la regex */
   };
   /* Test du champ Nom : */
   if (checkNumbers.test(lastName) == true || checkSpecialCharacters.test(lastName) == true || lastName == "") {
-    document.getElementById("lastname").style.borderColor = "red";
+    document.getElementById("lastname").style.borderColor = "#d58137";
     checkMessage = "Merci de renseigner votre nom de manière valide !";
   };
   /* Test du champ Prénom : */
-  if (firstName == null || checkNumbers.test(firstName) == true || checkSpecialCharacters.test(firstName) == true || firstName == "") {
-    document.getElementById("firstname").style.borderColor = "red";
+  if (checkNumbers.test(firstName) == true || checkSpecialCharacters.test(firstName) == true || firstName == "") {
+    document.getElementById("firstname").style.borderColor = "#d58137";
     checkMessage = "Merci de renseigner votre prénom de manière valide !";
   };
 
@@ -174,3 +174,43 @@ function checkInput() {
 
 
 
+
+/* ENVOI DES INFOS FORMULAIRE DE COMMANDE
+******************************************************************/
+
+document.getElementById("submitBtn").addEventListener('click',
+
+function confirmOrder(event){
+  if (checkInput() == true){
+    /* Si les champs sont conformes, on prépare le tableau de données pour la commande */
+    let order = {
+      products: userCart,
+      contact: {
+        firstName: document.getElementById("firstname").value,
+        lastName: document.getElementById("lastname").value,
+        email: document.getElementById("email").value,
+        address: document.getElementById("address").value,
+        city: document.getElementById("city").value,
+      }
+    };
+
+  fetch("http://localhost:3000/api/cameras/order", {
+    method: 'POST',
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(order),
+  })
+  .then(function (response) {
+    if (response.status == 201){
+      localStorage.setItem("orderNum", JSON.stringify(data));
+      window.open("./confirmation.html?orderID=" + data.orderId + data.orderTotalPrice);
+      /* window.open("confirmation.html?orderId=&price=") */
+
+    } else {
+      alert("Impossible de valider votre demande ! Une erreur est survenue.");
+    }
+  });
+
+}
+/* On empêche le rechargement intempestif de la page */
+event.preventDefault();
+});
