@@ -193,17 +193,22 @@ function confirmOrder(event){
         city: document.getElementById("city").value,
       }
     };
-
+  /* Préparation du format d'envoi à l'API */
   fetch("http://localhost:3000/api/cameras/order", {
     method: 'POST',
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(order),
   })
+  /* Récupération de la réponse de l'API */
   .then(function (response) {
-    if (response.status == 201){
-      localStorage.setItem("orderNum", JSON.stringify(data));
-      window.open("./confirmation.html?orderID=" + data.orderId + data.orderTotalPrice);
-      /* window.open("confirmation.html?orderId=&price=") */
+    if (response.status == 201){ /* Si la connexion est OK... */
+      response.json()
+        .then (function (product) {
+          /* Inscription des infos complémentaires venant de l'API dans le localStorage */
+          localStorage.setItem("orderNum", JSON.stringify(product));
+          /* Ouverture de la page de confirmation d'envoi */
+          window.open("./confirmation.html?orderID=" + product.orderId + product.orderTotalPrice);
+        });
 
     } else {
       alert("Impossible de valider votre demande ! Une erreur est survenue.");
