@@ -17,10 +17,10 @@ fetch(apiUrl)
                     cameras.forEach(element => {
                         productList = productList 
                         + '<div class="products-list__item">' 
-                        + '<img class="products-list__image" src="' + element.imageUrl + '" alt="">' 
+                        + '<a href="product.html?id=' + element._id + '"><img class="products-list__image" src="' + element.imageUrl + '" alt=""></a>' 
                         + '<h3 class="products-list__item--name">' + element.name + '</h3>'
-                        + '<div class="btn details"><a href="product.html?id=' + element._id + '">Voir en détails</a></div>'
-                        + '<div class="btn add-cart"><a href="#">Ajouter au panier</a></div>'
+                        + '<p class="products-list__item--price">' + (element.price / 100).toFixed(2) + '€' + '</p>'
+                        + '<a class="btn details" href="product.html?id=' + element._id + '">Voir en détails</a>'
                         + '</div>';
                         /* On créer pour chaque entrée le contenu qui va s'insérer dans le html de notre page */
                     });

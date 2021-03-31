@@ -108,6 +108,10 @@ footer {
 /* HOMEPAGE : 
 ****************************************************************/
 
+.title-center {
+    text-align: center;
+    margin-top: 2em;
+}
 
 .products-list {
     display: flex;
@@ -136,8 +140,17 @@ footer {
     left: 20px;
     top: 0;
     font-weight: bold;
+    font-size: 1.4em;
     color: white;
     text-shadow: 2px 2px 5px #0000009c;
+}
+.products-list__item--price {
+    position: absolute;
+    left: 20px;
+    top: 1.8em;
+    font-weight: bold;
+    font-size: large;
+    color: #d58137;
 }
 
 .products-list__image {
@@ -313,7 +326,7 @@ input {
 
 #logo-check-validation .fas {
     padding: 3rem;
-    color: green;
+    color: rgb(65, 160, 81);
     font-size: 8em;
     cursor: unset;
 }
@@ -354,12 +367,12 @@ input {
 .details {
     position: absolute;
     width: auto;
-    bottom: 4em;
+    bottom: 0;
 }
 .add-cart {
     position: absolute;
     width: auto;
-    bottom: 0;
+    bottom: 4em;
 }
 .add-cart2 {
     margin-left: -4px;
