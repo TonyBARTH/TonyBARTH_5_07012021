@@ -250,7 +250,7 @@ footer {
 }
 #cart-total-price {
     width: 100%;
-    border-top: 1px solid black;
+    border-top: 1px solid #d58137;
     padding: 0.5em 0 1em 0;
     text-align: right;
     font-size: 28px;
@@ -317,8 +317,17 @@ input {
     font-size: 8em;
     cursor: unset;
 }
-
-
+#totalPrice {
+    font-weight: bold;
+}
+#orderNum {
+    font-weight: bold;
+}
+.divider {
+    border-top: solid 1px #d58137;
+    margin-top: 2em;
+    padding-bottom: 1em;
+}
 
 
 

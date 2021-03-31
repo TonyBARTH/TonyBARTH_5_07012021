@@ -80,8 +80,6 @@ Promise.all(promises).then(products => {
     /* On inscrit le résultat dans le corps de la page html */
 });
 
-
-
 /* FONCTION SUPPRESSION AU PANIER
 ***************************************************/
 
@@ -175,8 +173,9 @@ function checkInput() {
 
 
 
-/* ENVOI DES INFOS FORMULAIRE DE COMMANDE
+/* ENVOI DES INFOS COMMANDE A l'API
 ******************************************************************/
+
 
 document.getElementById("submitBtn").addEventListener('click',
 
@@ -205,9 +204,9 @@ function confirmOrder(event){
       response.json()
         .then (function (product) {
           /* Inscription des infos complémentaires venant de l'API dans le localStorage */
-          localStorage.setItem("orderNum", JSON.stringify(product));
+          localStorage.setItem("orderDetails", JSON.stringify(product));
           /* Ouverture de la page de confirmation d'envoi */
-          window.open("./confirmation.html?orderID=" + product.orderId + product.orderTotalPrice);
+          window.location.href = ("./confirmation.html?orderID="+ product.orderId);
         });
 
     } else {
