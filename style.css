@@ -154,7 +154,7 @@ footer {
 }
 
 .products-list__image {
-    opacity: 1;
+    opacity: 0.9;
     height: 100%;
     width: auto;
     object-fit: cover;
@@ -355,6 +355,7 @@ input {
     font-weight: bold;
     text-align: center;
     min-width: 10em;
+    width: fit-content;
     padding: 1em;
     border: none;
     border-radius: 35px;
@@ -375,10 +376,15 @@ input {
     bottom: 4em;
 }
 .add-cart2 {
-    margin-left: -4px;
+    margin-left: -3px;
+}
+.goto-cart {
+    display: none;
+    margin-left: -3px;
 }
 .delete-cart2 {
-    margin-left: -4px;
+    display: none;
+    margin-left: -3px;
 }
 .back-to-home {
     margin: 3em auto;

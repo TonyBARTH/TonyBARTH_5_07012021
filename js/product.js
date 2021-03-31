@@ -48,8 +48,12 @@ document.getElementById("add-cart").addEventListener('click', function(){
         userCart.push(id);
         localStorage.setItem('userCart', JSON.stringify(userCart));
         alert("Votre article a bien été ajouté au panier !");
+        document.getElementById("add-cart").style.display = 'none';
+        document.getElementById("goto-cart").style.display = 'block';
     } else {
         alert("Cet article est déjà dans votre panier !");
+        document.getElementById("add-cart").style.display = 'none';
+        document.getElementById("goto-cart").style.display = 'block';
     }
 });
 
@@ -79,6 +83,8 @@ document.getElementById("delete-cart").addEventListener('click', function(){
         localStorage.setItem('userCart', JSON.stringify(userCart));
         /* On restructure ensuite le panier pour termnier l'opération */
         alert("Votre article a été retiré du panier !")
+        document.getElementById("add-cart").style.display = 'block';
+        document.getElementById("goto-cart").style.display = 'none';
     }
 });
 
