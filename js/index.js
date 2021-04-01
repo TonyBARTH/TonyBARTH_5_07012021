@@ -20,7 +20,7 @@ fetch(apiUrl)
                         + '<a href="product.html?id=' + element._id + '"><img class="products-list__image" src="' + element.imageUrl + '" alt=""></a>' 
                         + '<h3 class="products-list__item--name">' + element.name + '</h3>'
                         + '<p class="products-list__item--price">' + (element.price / 100).toFixed(2) + '€' + '</p>'
-                        + '<a class="btn details" href="product.html?id=' + element._id + '">Voir en détails</a>'
+                        + '<a class="btn-white details" href="product.html?id=' + element._id + '">Voir en détails</a>'
                         + '</div>';
                         /* On créer pour chaque entrée le contenu qui va s'insérer dans le html de notre page */
                     });

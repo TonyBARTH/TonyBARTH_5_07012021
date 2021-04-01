@@ -362,8 +362,25 @@ input {
     margin: 0.8em;
     cursor: pointer;
 }
+.btn-white {
+    background: white;
+    color: #8f5bfe;
+    font-weight: bold;
+    text-align: center;
+    min-width: 10em;
+    width: fit-content;
+    padding: 1em;
+    border-radius: 35px;
+    margin: 0.8em;
+    cursor: pointer;
+}
 .btn:hover {
     background: linear-gradient(150deg, #8f5bfe, #d58137);
+}
+.btn-white:hover {
+    background: linear-gradient(150deg, #8f5bfe, #d58137);
+    color: white;
+    border: none;
 }
 .details {
     position: absolute;
