@@ -202,11 +202,15 @@ function confirmOrder(event){
   .then(function (response) {
     if (response.status == 201){ /* Si la connexion est OK... */
       response.json()
-        .then (function (product) {
+        .then (function (orderDetails) {
+          let totalPrice = 0;
+          for (product in orderDetails.products){
+            totalPrice = totalPrice + orderDetails.products[product].price/100;
+          }        
           /* Inscription des infos complémentaires venant de l'API dans le localStorage */
-          localStorage.setItem("orderDetails", JSON.stringify(product));
+          localStorage.setItem("userCart", JSON.stringify([]));
           /* Ouverture de la page de confirmation d'envoi */
-          window.location.href = ("./confirmation.html?orderID="+ product.orderId);
+          window.location.href = ("./confirmation.html?orderID="+ orderDetails.orderId +'&amount=' + totalPrice);
         });
 
     } else {

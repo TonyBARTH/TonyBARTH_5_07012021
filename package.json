@@ -1,0 +1,25 @@
+{
+  "name": "tonybarth_5_07012021",
+  "version": "1.0.0",
+  "description": "P5 Projet Orinoco by TonyBARTH",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "bootstrap-icons": "^1.4.1",
+    "sass": "^1.32.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TonyBARTH/TonyBARTH_5_07012021.git"
+  },
+  "author": "TonyBARTH",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TonyBARTH/TonyBARTH_5_07012021/issues"
+  },
+  "homepage": "https://github.com/TonyBARTH/TonyBARTH_5_07012021#readme"
+}
