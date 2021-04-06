@@ -4,39 +4,43 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="node_modules/sass/css/style.css" />
         <script src="https://kit.fontawesome.com/080fa346f0.js" crossorigin="anonymous"></script>
         <title>Orinoco | Vintage cameras shop</title>
     </head>
 
     <body>
         <header>
-            <div id="logo-orinoco">
-                <a href="./index.html"><img src="./img/logo-orinoco-xs" alt="Logo Orinoco"></a>
-            </div>
-            <div class="header-icon" id="cart">
-                <div><a href="./cart.html"><i class="fas fa-shopping-cart"></i></a></div>
-            </div>
+            <nav class="navbar navbar-expand-lg bg-white shadow">
+                <a class="navbar-brand" href="./index.html"><img src="./img/logo-orinoco-xs" alt="Logo Orinoco"></a>
+                <ul class="list-inline">
+                    <li class="nav-item active list-inline-item">
+                        <a class="nav-link" href="index.html">La boutique</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="nav-link" href="./cart.html"><i class="fas fa-shopping-cart"></i></a>
+                     </li>
+                </ul>
+            </nav>
         </header>
 
-        <section id="banner">
+        <section class="jumbotron text-center" id="banner">
             <h1>La boutique caméra</h1>
             <p>Retrouvez ici tous nos modèles de caméras vintage <br>restaurées avec passion par notre équipe de spécialistes.</p>
         </section>
 
         <section>
-            <h2 class="title-center">Tous nos produits :</h2>
+            <h2 class="title-center text-center">Tous nos produits :</h2>
             <div class="products-list"></div>
         </section>
 
-        <section class="about">
+        <section class="about text-center">
             <p><strong>Envie de proposer votre modèle à la vente ?</strong></p>
             <div class="btn">Vendez le vôtre !</div>
         </section>
         
         <footer>
-            <div id="footer-signature">©2021 Orinoco by Tony BARTH. All rights reserved.</div>
+            <div class= "text-center" id="footer-signature">©2021 Orinoco by Tony BARTH. All rights reserved.</div>
             <div id="logo-footer"></div>
         </footer>
 
