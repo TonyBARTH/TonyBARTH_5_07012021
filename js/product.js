@@ -7,19 +7,23 @@ fetch(apiUrl + id)
     .then(response => {
         response.json()
             .then(cameras => {
-                console.log(cameras);
                 document.querySelector(".product__img").innerHTML = '<img src="' + cameras.imageUrl + '" alt="Photo de lappareil photo"></a>';
                 document.querySelector(".product__details--name").innerHTML = '<h1>' + cameras.name + '</h1>';
                 document.querySelector(".product__details--description").innerHTML = '<p>' + cameras.description + '</p>';
+                
+                let option = "";
+                for (lense in cameras.lenses) {
+                    option = option 
+                    + "<option>" + cameras.lenses[lense] + "</option>"
+                }
                 document.querySelector(".product__details--options").innerHTML = 
-                '<form>'
-                + '<label for="options-choice">Choix de loptique :</label>'
+                + '<form>'
+                + '<label for="options-choice">Choix de la lentille :</label>'
                 + '<select id="option-choose" name="option-choose">'
-                + '<option>' + cameras.lenses[0] + '</option>'
-                + '<option>' + cameras.lenses[1] + '</option>'
-                + '<option>' + cameras.lenses[2] + '</option>'
+                + option
                 + '</select>'
                 + '</form>';
+                                
                 document.querySelector(".product__details--price").innerHTML = '<p>' + (cameras.price / 100).toFixed(2) + '€' + '</p>';
             })
 })

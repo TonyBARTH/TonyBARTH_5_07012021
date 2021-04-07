@@ -16,13 +16,11 @@ fetch(apiUrl)
                 function getContent (cameras) {
                     cameras.forEach(element => {
                         productList = productList 
-                        + '<div class="card products-list__item">' 
-                        + '<div class="card-body">'
+                        + '<div class="col-3 products-list__item">' 
                         + '<a href="product.html?id=' + element._id + '"><img class="products-list__image" src="' + element.imageUrl + '" alt=""></a>' 
-                        + '<h3 class="card-title products-list__item--name">' + element.name + '</h3>'
-                        + '<p class="card-text products-list__item--price">' + (element.price / 100).toFixed(2) + '€' + '</p>'
+                        + '<h3 class="products-list__item--name">' + element.name + '</h3>'
+                        + '<p class="products-list__item--price">' + (element.price / 100).toFixed(2) + '€' + '</p>'
                         + '<a class="btn-white details" href="product.html?id=' + element._id + '">Voir en détails</a>'
-                        + '</div>'
                         + '</div>';
                         /* On créer pour chaque entrée le contenu qui va s'insérer dans le html de notre page */
                     });
@@ -41,27 +39,30 @@ fetch(apiUrl)
 ;
 
 
-/* Systeme d'ajout au panier */
+/* Systeme d'ajout au panier (a rajouter si besoin d'un bouton "Ajouter au panier" dès la homepage 
 
-document.querySelector(".add-cart").addEventListener('click', function(){
+{
+    document.querySelector(".add-cart").addEventListener('click', function(){
     var userCart = localStorage.getItem('userCart');
 
     if (userCart == null) {
         userCart = [];
-        /* S'il n'y a pas d'item dans le panier, on créé un tableau */
+        // S'il n'y a pas d'item dans le panier, on créé un tableau
     } else {
         userCart = JSON.parse(userCart);
-        /* Sinon, on parse le contenu */ 
+        // Sinon, on parse le contenu
     }
 
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
-    /* On récupère l'identifiant du produit */
+    // On récupère l'identifiant du produit
 
     if (!userCart.includes(id)) {
-        /* Si le produit n'est pas dans le panier... */
+        // Si le produit n'est pas dans le panier...
         userCart.push(id);
         localStorage.setItem('userCart', JSON.stringify(userCart));
-        /* ... on l'inscrit dedans (localStorage) et on le reconvertit en chaine Json */
+        //... on l'inscrit dedans (localStorage) et on le reconvertit en chaine Json
     }
 });
+
+} */
