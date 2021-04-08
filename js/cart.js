@@ -59,9 +59,9 @@ Promise.all(promises).then(products => {
         totalPrice += (product.price / 100);
 
         html = html
-        + '<div class="cart-item">'
-        + '<div class="cart-product__img">' + '<img src="' + product.imageUrl + '" alt="Photo du produit"></a>' + '</div>'
-        + '<div class="cart-product__details">'
+        + '<div class="row cart-item">'
+        + '<div class="col-lg-2 cart-product__img">' + '<img src="' + product.imageUrl + '" alt="Photo du produit"></a>' + '</div>'
+        + '<div class="col-lg-5 cart-product__details">'
         + '<div class="cart-product__details--name">'+ '<h2>' + product.name + '</h2>' + '</div>'
         + '</div>'
         + '<div class="cart-product__details--price">' + (product.price / 100).toFixed(2) + '€' + '</div>'

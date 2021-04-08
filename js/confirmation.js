@@ -12,5 +12,3 @@ document.getElementById("orderNum").innerText = orderId;
 document.getElementById("totalPrice").innerText = amount.toFixed(2) + '€';
 
 
-/* Remise à zéro du localStorage au click sur bouton de fermeture/retour vers la boutique */
-
