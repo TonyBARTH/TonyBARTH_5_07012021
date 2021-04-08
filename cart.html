@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="node_modules/sass/css/style.css" />
         <link rel="stylesheet" href="./style.css" />
         <script src="https://kit.fontawesome.com/080fa346f0.js" crossorigin="anonymous"></script>
 
@@ -30,7 +31,7 @@
             </nav>
         </header>
 
-        <section class="page-title">
+        <section class="jumbotron text-center page-title">
             <h1>Votre panier</h1>
         </section>
 
@@ -38,53 +39,95 @@
             <p>Votre panier est vide !</p>
         </section>
 
-        <section id="cart-resume">
+        <section class="container" id="cart-resume">
+
+
+            <div class="row cart-item">
+                <div class="col-lg-2 cart-product__img"></div>
+                <div class="col-lg-5 cart-product__details">
+                    <div class="cart-product__details--name">
+                        <h3>Konica Minolta 500D</h3>
+                    </div>
+                </div>
+                <div class="cart-product__details--price">85€</div>
+                <div class="btn">Enlever du panier</div>
+            </div>
+
+            <div class="row cart-item">
+                <div class="col-lg-2 cart-product__img"></div>
+                <div class="col-lg-5 cart-product__details">
+                    <div class="cart-product__details--name">
+                        <h3>Polaroid Colormatch 70</h3>
+                    </div>
+                </div>
+                <div class="cart-product__details--price">85€</div>
+                <div class="btn">Enlever du panier</div>
+            </div>
+
+            <div class="row cart-item">
+                <div class="col-lg-2 cart-product__img"></div>
+                <div class="col-lg-5 cart-product__details">
+                    <div class="cart-product__details--name">
+                        <h3>Kodak 50</h3>
+                    </div>
+                </div>
+                <div class="cart-product__details--price">85€</div>
+                <div class="btn">Enlever du panier</div>
+            </div>
+
+
         </section>
 
-        <section id="cart-total">
+        <section class="container" id="cart-total">
             <h3>Montant total :</h3>
             <div id="cart-total-price"></div>
         </section>          
 
         
 
-        <section id="user-form">
-            <h2>Passer commande</h2>
-            <p>Veuillez remplir le formulaire ci-dessous pour finaliser votre commande.</p>
-                <form method="post" name="cart-form">
-                    <div class="form-field half">
-                        <label for="firstname" class="label">Votre prénom :</label>
-                        <input type="text" name="firstname" id="firstname" class="input" required />
-                    </div>
-                    <div class="form-field half">
-                        <label for="lastname" class="label">Votre nom :</label>
-                        <input type="text" name="lastname" id="lastname" class="input" required />
-                    </div>
-                    <div class="form-field">
-                        <label for="email" class="label">Votre e-mail :</label>
-                        <input type="text" name="email" id="email" class="input" required />
-                    </div>
-                    <div class="form-field">
-                        <label for="address" class="label">Votre adresse :</label>
-                        <input type="text" name="address" id="address" class="input" required />
-                    </div>
-                    <div class="form-field half">
-                        <label for="zipcode" class="label">Code postal :</label>
-                        <input type="text" name="zipcode" id="zipcode" class="input" required />
-                    </div>
-                    <div class="form-field half">
-                        <label for="city" class="label">Ville: </label>
-                        <input type="text" name="city" id="city" class="input" required />
-                    </div>
-                    <div id="submitBtn">
-                        <input class="btn cart-validation" type="submit" value="Confirmer la commande"/>
-                    </div>
-                </form>
+        <section class="container" id="user-form">
+            <div class="row justify-content-center">
+                <h2 class="text-center">Passer commande</h2>
+                <p class="text-center">Veuillez remplir le formulaire ci-dessous pour finaliser votre commande.</p>
+                    <form method="post" name="cart-form">
+                        <div class="form-field col-md-6">
+                            <label for="firstname" class="label">Votre prénom :</label>
+                            <input type="text" name="firstname" id="firstname" class="input" required />
+                        </div>
+                        <div class="form-field col-md-6">
+                            <label for="lastname" class="label">Votre nom :</label>
+                            <input type="text" name="lastname" id="lastname" class="input" required />
+                        </div>
+                        <div class="form-field col-12">
+                            <label for="email" class="label">Votre e-mail :</label>
+                            <input type="text" name="email" id="email" class="input" required />
+                        </div>
+                        <div class="form-field col-12">
+                            <label for="address" class="label">Votre adresse :</label>
+                            <input type="text" name="address" id="address" class="input" required />
+                        </div>
+                        <div class="form-field col-md-6">
+                            <label for="zipcode" class="label">Code postal :</label>
+                            <input type="text" name="zipcode" id="zipcode" class="input" required />
+                        </div>
+                        <div class="form-field col-md-6">
+                            <label for="city" class="label">Ville: </label>
+                            <input type="text" name="city" id="city" class="input" required />
+                        </div>
+                        <div id="submitBtn">
+                            <input class="btn cart-validation" type="submit" value="Confirmer la commande"/>
+                        </div>
+                    </form>
+            </div>
         </section>
 
 
 
-        <a href="./index.html"><div class="btn back-to-home">Continuer vos achats</div></a>
+        <a class="container" href="./index.html">
+            <div class="row">
+                <div class="btn m-auto">Continuer vos achats</div>
+            </div>
+        </a>
 
         <footer>
             <div id="footer-signature">©2021 Orinoco by Tony BARTH. All rights reserved.</div>
