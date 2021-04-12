@@ -13,11 +13,14 @@ fetch(apiUrl + id)
                 
                 let option = "";
                 for (lense in cameras.lenses) {
+                    /* Si une valeur est vide elle ne sera pas affichée */
+                    if (cameras.lenses[lense] != "") {
                     option = option 
                     + "<option>" + cameras.lenses[lense] + "</option>"
+                    }
                 }
                 document.querySelector(".product__details--options").innerHTML = 
-                + '<form>'
+                '<form>'
                 + '<label for="options-choice">Choix de la lentille :</label>'
                 + '<select id="option-choose" name="option-choose">'
                 + option

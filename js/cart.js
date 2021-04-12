@@ -61,7 +61,7 @@ Promise.all(promises).then(products => {
         html = html
         + '<div class="row cart-item">'
         + '<div class="col-lg-2 cart-product__img">' + '<img src="' + product.imageUrl + '" alt="Photo du produit"></a>' + '</div>'
-        + '<div class="col-lg-5 cart-product__details">'
+        + '<div class="col-lg-4 cart-product__details">'
         + '<div class="cart-product__details--name">'+ '<h2>' + product.name + '</h2>' + '</div>'
         + '</div>'
         + '<div class="cart-product__details--price">' + (product.price / 100).toFixed(2) + '€' + '</div>'
@@ -186,7 +186,7 @@ function confirmOrder(event){
       }
     };
   /* Préparation du format d'envoi à l'API */
-  fetch("http://localhost:3000/api/cameras/order", {
+  fetch(apiUrl + '/order', {
     method: 'POST',
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(order),
