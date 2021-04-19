@@ -5,7 +5,7 @@ const id = urlParams.get('id');
 
 
 
-/* AFFICHAGE DU PANIER D'ACHAT
+/* GENERATION DU PANIER D'ACHAT
 **************************************************/
 
 let userCart = JSON.parse(localStorage.getItem("userCart"));
@@ -52,12 +52,13 @@ const cartResume = document.getElementById("cart-resume");
 const totalCart = document.getElementById("cart-total-price");
 var html = "";
 
+function cartDisplay() {
+  /* Construction d'un tableau de promesses... */
+  Promise.all(promises).then(products => {
 
-Promise.all(promises).then(products => {
     let totalPrice = 0;
     products.forEach(product => {
-        totalPrice += (product.price / 100);
-
+        /* On prépare l'affichage des vignettes produits... */
         html = html
         + '<div class="row cart-item">'
         + '<div class="col-lg-2 cart-product__img">' + '<img src="' + product.imageUrl + '" alt="Photo du produit"></a>' + '</div>'
@@ -67,32 +68,42 @@ Promise.all(promises).then(products => {
         + '<div class="cart-product__details--price">' + (product.price / 100).toFixed(2) + '€' + '</div>'
         + '<div class="btn delete-cart" data-id="' + product._id + '">Enlever du panier</div>'
         + '</div>';
+        /* ...puis on calcule le prix final */
+        totalPrice += (product.price / 100);
     });
+    /* On inscrit le résultat dans le corps de la page html */
     cartResume.innerHTML = html;
     totalCart.innerText = totalPrice.toFixed(2) + '€' ;
-    /* On inscrit le résultat dans le corps de la page html */
 });
+}
+cartDisplay();
+
 
 /* FONCTION SUPPRESSION AU PANIER
 ***************************************************/
 
-document.addEventListener('click', e => {
-  if (!e.target.classList.contains("delete-cart")) {
-    return;
-  }
-  /* Compare le data attribute (data-id) du bouton à celui du tableau de produits et suprime l'élément correspondant */
-  for (index in userCart) {
-
-    if (userCart[index] == e.target.dataset.id) {
-      /* Si l'index dans le Panier est identique à l'id de la cible... */
-       userCart.splice(index, 1);
-       /* ...on retire le produit du tableau */
+function cartDelete() {
+  document.addEventListener('click', e => {
+    if (!e.target.classList.contains("delete-cart")) {
+      return;
     }
-  }
-  localStorage.setItem('userCart', JSON.stringify(userCart));
-  window.location.reload();
-  /* On termine en renvoyant le panier et en actualisant la page */
-});
+    /* Compare le data attribute (data-id) du bouton à celui du tableau de produits et suprime l'élément correspondant */
+    for (index in userCart) {
+  
+      if (userCart[index] == e.target.dataset.id) {
+        /* Si l'index dans le Panier est identique à l'id de la cible... */
+         userCart.splice(index, 1);
+         /* ...on retire le produit du tableau */
+      }
+    }
+    localStorage.setItem('userCart', JSON.stringify(userCart));
+    window.location.reload();
+    /* On termine en renvoyant le panier et en actualisant la page */
+  });
+}
+
+cartDelete();
+
 
 
 
@@ -193,17 +204,20 @@ function confirmOrder(event){
   })
   /* Récupération de la réponse de l'API */
   .then(function (response) {
-    if (response.status == 201){ /* Si la connexion est OK... */
+    /* Si la connexion est OK... */
+    if (response.status == 201){ 
       response.json()
+        /* Calcul du montant total de la commande */
         .then (function (orderDetails) {
           let totalPrice = 0;
           for (product in orderDetails.products){
             totalPrice = totalPrice + orderDetails.products[product].price/100;
-          }        
-          /* Inscription des infos complémentaires venant de l'API dans le localStorage */
-          localStorage.setItem("userCart", JSON.stringify([]));
-          /* Ouverture de la page de confirmation d'envoi */
-          window.location.href = ("./confirmation.html?orderID="+ orderDetails.orderId +'&amount=' + totalPrice);
+          };
+          /* Inscription du montant total de la commande dans le localStorage */
+          localStorage.setItem("orderAmount", totalPrice);
+
+          /* Ouverture de la page de confirmation d'envoi avec l'id de la commande dans l'url */
+          window.location.href = ("./confirmation.html?orderID="+ orderDetails.orderId);
         });
 
     } else {

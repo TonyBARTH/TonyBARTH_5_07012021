@@ -3,7 +3,14 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 const apiUrl = "http://localhost:3000/api/cameras/";
 
-fetch(apiUrl + id)
+
+
+/* RECUPERATION DES INFOS PRODUIT
+***************************************************/
+
+function pageProductBuild () {
+    
+    fetch(apiUrl + id)
     .then(response => {
         response.json()
             .then(cameras => {
@@ -11,6 +18,7 @@ fetch(apiUrl + id)
                 document.querySelector(".product__details--name").innerHTML = '<h1>' + cameras.name + '</h1>';
                 document.querySelector(".product__details--description").innerHTML = '<p>' + cameras.description + '</p>';
                 
+                /* Préparation du listing des options... */
                 let option = "";
                 for (lense in cameras.lenses) {
                     /* Si une valeur est vide elle ne sera pas affichée */
@@ -19,6 +27,7 @@ fetch(apiUrl + id)
                     + "<option>" + cameras.lenses[lense] + "</option>"
                     }
                 }
+                /* Implémentation du sélecteur dans le html */
                 document.querySelector(".product__details--options").innerHTML = 
                 '<form>'
                 + '<label for="options-choice">Choix de la lentille :</label>'
@@ -26,26 +35,30 @@ fetch(apiUrl + id)
                 + option
                 + '</select>'
                 + '</form>';
-                                
                 document.querySelector(".product__details--price").innerHTML = '<p>' + (cameras.price / 100).toFixed(2) + '€' + '</p>';
             })
-})
+    })
+}
+
+pageProductBuild();
+
+
 
 
 
 /* FONCTION AJOUT AU PANIER
 ***************************************************/
 
-document.getElementById("add-cart").addEventListener('click', function(){
+document.getElementById("add-cart").addEventListener('click', function addCart(){
     var userCart = localStorage.getItem('userCart');
 
+    /* Si le panier est vide, il va être généré sous forme de tableau */
     if (userCart == null) {
         userCart = []; 
         console.log("Le panier vient d'être généré dans le localStorage"); 
-        /* Si le panier est vide, il va être généré sous forme de tableau */
+    /* Sinon, on le récupère en le parsant */
     } else {
         userCart = JSON.parse(userCart); 
-        /* Sinon, on le récupère en le parsant */
     }
 
     const urlParams = new URLSearchParams(window.location.search);
